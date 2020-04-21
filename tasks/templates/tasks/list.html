@@ -10,6 +10,13 @@
 <body>
     <h1>To Do list</h1>
 
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <!-- form -->
+        {{temp.title}}
+        <input type="submit" name="CreateTask">
+    </form>
+
     {% for k in info%}
     <div>
         <p>{{ k }}</p>
