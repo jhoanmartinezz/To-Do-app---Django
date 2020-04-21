@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do APP</title>
 </head>
 
 <body>
@@ -19,6 +19,7 @@
 
     {% for k in info%}
     <div>
+        <a href="{% url 'update_task' k.id %}">Update</a>
         <p>{{ k }}</p>
     </div>
 
