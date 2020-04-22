@@ -20,9 +20,16 @@
     {% for k in info%}
     <div>
         <a href="{% url 'update_task' k.id %}">Update</a>
-        <p>{{ k }}</p>
+        <a href="{% url 'delete_task' k.id %}">Delete</a>
+        <!--complete or not-->
+        {% if k.complete == 1 %}
+        <strike>{{ k }}</strike>
+        <!---->
+        {% else %}
+        <span>{{ k }}</span>
+        <!---->
+        {% endif %}
     </div>
-
     {% endfor %}
 
 </body>
