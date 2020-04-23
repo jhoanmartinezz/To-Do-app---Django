@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>To Do APP</title>
+    <title>Tareas app</title>
 </head>
 <!--Frontend estilos-->
 <style>
@@ -52,11 +52,16 @@
         background-color: #ffae19;
         border-color: #e59400;
     }
+    
+    .titulo {
+        display: block;
+        text-align: center;
+    }
 </style>
 
 <body>
-    <h1 class="titulo">To Do app</h1>
     <div class="center-column">
+        <h1 class="titulo">Lista de tareas app</h1>
         <form action="/" method="POST">
             {% csrf_token %}
             <!-- form -->
@@ -66,8 +71,8 @@
         <div class="todo-list">
             {% for k in info%}
             <div class="item-row">
-                <a class="btn btn-sm btn-info" href="{% url 'update_task' k.id %}">Update</a>
-                <a class="btn btn-sm btn-danger" href="{% url 'delete_task' k.id %}">Delete</a>
+                <a class="btn btn-sm btn-info" href="{% url 'update_task' k.id %}">Actualizar</a>
+                <a class="btn btn-sm btn-danger" href="{% url 'delete_task' k.id %}">Eliminar</a>
                 <!--complete or not-->
                 {% if k.complete == 1 %}
                 <strike>{{ k }}</strike>
