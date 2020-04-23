@@ -4,33 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <title>To Do APP</title>
 </head>
+<!--Frontend estilos-->
+<style>
+    body {
+        background-color: #638CB8;
+    }
+    
+    input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+    
+    input::placeholder {
+        color: #d3d3d3;
+    }
+    
+    .submit {
+        background-color: #6BA3E8;
+    }
+    
+    .center-column {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+    }
+    
+    .item-row {
+        background-color: #906abd;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);
+    }
+    
+    .btn-danger {
+        background-color: #ffae19;
+        border-color: #e59400;
+    }
+</style>
 
 <body>
-    <h1>To Do list</h1>
-
-    <form action="/" method="POST">
-        {% csrf_token %}
-        <!-- form -->
-        {{temp.title}}
-        <input type="submit" name="CreateTask">
-    </form>
-
-    {% for k in info%}
-    <div>
-        <a href="{% url 'update_task' k.id %}">Update</a>
-        <a href="{% url 'delete_task' k.id %}">Delete</a>
-        <!--complete or not-->
-        {% if k.complete == 1 %}
-        <strike>{{ k }}</strike>
-        <!---->
-        {% else %}
-        <span>{{ k }}</span>
-        <!---->
-        {% endif %}
+    <h1 class="titulo">To Do app</h1>
+    <div class="center-column">
+        <form action="/" method="POST">
+            {% csrf_token %}
+            <!-- form -->
+            {{temp.title}}
+            <input class="btn btn-info" type="submit" name="CreateTask">
+        </form>
+        <div class="todo-list">
+            {% for k in info%}
+            <div class="item-row">
+                <a class="btn btn-sm btn-info" href="{% url 'update_task' k.id %}">Update</a>
+                <a class="btn btn-sm btn-danger" href="{% url 'delete_task' k.id %}">Delete</a>
+                <!--complete or not-->
+                {% if k.complete == 1 %}
+                <strike>{{ k }}</strike>
+                <!---->
+                {% else %}
+                <span>{{ k }}</span>
+                <!---->
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
 
 </body>
 
